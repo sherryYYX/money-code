@@ -1,8 +1,9 @@
 <template>
-  <div>
-    label
-    <Nav></Nav>
-  </div>
+  <Layout>
+    <div>
+      <p>label</p>
+    </div>
+  </Layout>
 </template>
 
 <script lang="ts">
