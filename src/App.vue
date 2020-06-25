@@ -6,13 +6,14 @@
 </template>
 
 <style lang="scss">
-*{
-  box-sizing: border-box;
-  padding:0;
-  margin: 0;
-}
-  a{
-    text-decoration: none;
-    color: #ff4f21;
+@import "assets/style/reset";
+  @import "assets/style/helper";
+  body{
+    font-family: $font-hei;
+  }
+  #app{
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    color: #333333;
   }
 </style>
