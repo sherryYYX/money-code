@@ -13,8 +13,8 @@
       <button style="grid-area: number-7" @click="inputContent">7</button>
       <button style="grid-area: number-8" @click="inputContent">8</button>
       <button style="grid-area: number-9" @click="inputContent">9</button>
-      <button style="grid-area: number-o" class="ok" @click="ok">OK</button>
-      <button style="grid-area: number-0" class="zero" @click="inputContent">0</button>
+      <button style="grid-area: number-o" @click="ok">OK</button>
+      <button style="grid-area: number-0" @click="inputContent">0</button>
       <button style="grid-area: number-p" @click="inputContent">.</button>
     </div>
   </div>

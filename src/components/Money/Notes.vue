@@ -1,8 +1,9 @@
 <template>
   <div>
     <label class="notes">
+      {{x}}
       <span class="name">备注</span>
-      <input type="text">
+      <input type="text" :value="x" @input="x=$event.target.value" placeholder="请在这里输入备注">
     </label>
   </div>
 </template>
@@ -13,7 +14,7 @@
 
   @Component
   export default class Notes extends Vue {
-
+    x = ''; //data
   }
 </script>
 
