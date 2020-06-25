@@ -11,4 +11,8 @@
   padding:0;
   margin: 0;
 }
+  a{
+    text-decoration: none;
+    color: #ff4f21;
+  }
 </style>
