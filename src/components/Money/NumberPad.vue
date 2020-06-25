@@ -1,21 +1,21 @@
 <template>
   <div class="numberPad">
-    <div class="output">100</div>
+    <div class="output">{{output}}</div>
     <div class="buttons">
-      <button style="grid-area: number-1">1</button>
-      <button style="grid-area: number-2">2</button>
-      <button style="grid-area: number-3">3</button>
-      <button style="grid-area: number-d">删除</button>
-      <button style="grid-area: number-4">4</button>
-      <button style="grid-area: number-5">5</button>
-      <button style="grid-area: number-6">6</button>
-      <button style="grid-area: number-s">清空</button>
-      <button style="grid-area: number-7">7</button>
-      <button style="grid-area: number-8">8</button>
-      <button style="grid-area: number-9">9</button>
-      <button style="grid-area: number-o" class="ok">OK</button>
-      <button style="grid-area: number-0" class="zero">0</button>
-      <button style="grid-area: number-p">.</button>
+      <button style="grid-area: number-1" @click="inputContent">1</button>
+      <button style="grid-area: number-2" @click="inputContent">2</button>
+      <button style="grid-area: number-3" @click="inputContent">3</button>
+      <button style="grid-area: number-d" @click="remove">删除</button>
+      <button style="grid-area: number-4" @click="inputContent">4</button>
+      <button style="grid-area: number-5" @click="inputContent">5</button>
+      <button style="grid-area: number-6" @click="inputContent">6</button>
+      <button style="grid-area: number-s" @click="clear">清空</button>
+      <button style="grid-area: number-7" @click="inputContent">7</button>
+      <button style="grid-area: number-8" @click="inputContent">8</button>
+      <button style="grid-area: number-9" @click="inputContent">9</button>
+      <button style="grid-area: number-o" class="ok" @click="ok">OK</button>
+      <button style="grid-area: number-0" class="zero" @click="inputContent">0</button>
+      <button style="grid-area: number-p" @click="inputContent">.</button>
     </div>
   </div>
 </template>
@@ -26,7 +26,50 @@
 
   @Component
   export default class NumberPad extends Vue {
+    output  = '0';  // 面板输出结果
 
+    //获取用户点击内容
+    inputContent(event: MouseEvent){
+      const Button = event.target as HTMLButtonElement;
+      const input = Button.textContent as string  //input 是用户点击得到的字符
+
+      if(this.output === '0'){ //当面板输出为 0 时
+        if(input === '0'){
+          return
+        }else if('0123456789'.indexOf(input) >= 0){ //如果用户点击的是 '123456789' 中的一个
+          this.output = input;
+        }else{
+          this.output += input;
+        }
+        return;
+      }
+
+      if(this.output.indexOf('.')>=0){  //当面板有'.'时，用户不能再输入'.'
+        if(input === '.'){
+          return;
+        }
+      }
+
+      this.output += input;
+    }
+
+    //删除
+    remove(){
+      if(this.output.length === 1){
+        this.output = '0'
+      }else {
+        this.output = this.output.slice(0,-1)
+      }
+    }
+
+    //清空
+    clear(){
+      this.output='0'
+    }
+
+    ok(){
+return
+    }
   }
 </script>
 
