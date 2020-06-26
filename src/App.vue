@@ -8,6 +8,7 @@
 <style lang="scss">
 @import "assets/style/reset";
   @import "assets/style/helper";
+
   body{
     font-family: $font-hei;
   }

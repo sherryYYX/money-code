@@ -9,7 +9,7 @@
 
 <script lang="ts">
   import Vue from 'vue';
-  import {Component, Prop} from 'vue-property-decorator';
+  import {Component, Prop, Watch} from 'vue-property-decorator';
   @Component
   export default class Types extends Vue{
     @Prop(Number) xxx: number | undefined;
@@ -20,7 +20,12 @@
       }
       this.type=type;
     }
+    @Watch('type')
+    typeChanged(type: string){
+      this.$emit('update:value',type)
+    }
   }
+
 </script>
 
 <style lang="scss" scoped>
