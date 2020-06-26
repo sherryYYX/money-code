@@ -1,8 +1,8 @@
 <template>
   <Layout>
-    <Tags></Tags>
+    <Tags :data-source="tags"></Tags>
     <Notes></Notes>
-    <Types :xxx=" 12333 "></Types>
+    <Types></Types>
     <NumberPad></NumberPad>
   </Layout>
 </template>
@@ -18,7 +18,11 @@
     components: {NumberPad, Types, Notes, Tags}
   })
   export default class Money extends Vue {
-
+    data(){
+      return{
+      tags:["衣服",'食物', '住房','交通']
+      }
+    }
   }
 </script>
 

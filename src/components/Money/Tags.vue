@@ -1,14 +1,9 @@
 <template>
   <div class="tags">
     <ul class="current">
-      <li>衣服</li>
-      <li>食物</li>
-      <li>住房</li>
-      <li>交通</li>
-      <li>衣服</li>
-      <li>食物</li>
-      <li>住房</li>
-      <li>交通</li>
+      <li v-for="tag in dataSource " :key="tag"
+          :class="{selected: selectedTags.indexOf(tag) >= 0}"
+      @click="select(tag)">{{tag}}</li>
     </ul>
     <div class="new">
       <button>新增标签</button>
@@ -18,11 +13,15 @@
 
 <script lang="ts">
   import Vue from 'vue';
-  import {Component} from 'vue-property-decorator';
+  import {Component, Prop} from 'vue-property-decorator';
 
   @Component
   export default class Tags extends Vue {
-
+    @Prop() dataSource: string[] | undefined;  //外部传来当标签
+    selectedTags: string[]=[]; //存储用户选中当标签
+    select(tag: string){
+      this.selectedTags.push(tag)
+    }
   }
 </script>
 
