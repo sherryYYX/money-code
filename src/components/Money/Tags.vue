@@ -3,7 +3,7 @@
     <ul class="current">
       <li v-for="tag in dataSource " :key="tag"
           :class="{selected: selectedTags.indexOf(tag) >= 0}"
-      @click="select(tag)">{{tag}}</li>
+      @click="toggle(tag)">{{tag}}</li>
     </ul>
     <div class="new">
       <button>新增标签</button>
@@ -19,9 +19,17 @@
   export default class Tags extends Vue {
     @Prop() dataSource: string[] | undefined;  //外部传来当标签
     selectedTags: string[]=[]; //存储用户选中当标签
-    select(tag: string){
-      this.selectedTags.push(tag)
+
+    //选中和取消选中标签开关
+    toggle(tag: string){
+      const index = this.selectedTags.indexOf(tag)
+      if(index >= 0){
+        this.selectedTags.splice(index,1)
+      }else {
+        this.selectedTags.push(tag)
+      }
     }
+
   }
 </script>
 
