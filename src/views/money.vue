@@ -1,6 +1,6 @@
 <template>
   <Layout>
-    <Tags :data-source="tags"></Tags>
+    <Tags :data-source.sync="tags"></Tags>
     <Notes></Notes>
     <Types></Types>
     <NumberPad></NumberPad>
