@@ -3,13 +3,28 @@ import Vuex from 'vuex'
 
 Vue.use(Vuex)
 
-export default new Vuex.Store({
+const store = new Vuex.Store({
   state: {
+    tag:"衣服",
+    tags:['衣服'],
+
+
+    // tags: ["衣服",'食物', '住房','交通']
   },
   mutations: {
+    save (tags) {
+      window.localStorage.setItem('tags', JSON.stringify(tags))
+    },
+
+    fetch (tags) {
+      JSON.stringify(window.localStorage.getItem('tags'))
+      return tags
+    }
   },
-  actions: {
-  },
-  modules: {
-  }
 })
+
+export default store
+
+// store.commit('save')
+// console.log(store.commit('fetch'));
+

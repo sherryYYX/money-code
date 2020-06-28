@@ -5,18 +5,15 @@ import router from './router'
 import store from './store'
 import Nav from '@/components/Nav.vue';
 import Layout from '@/components/Layout.vue';
+import Icon from '@/components/Icon.vue';
 
-import Tags from '@/components/Money/Tags.vue';
-import Notes from '@/components/Money/Notes.vue';
-import Types from '@/components/Money/Types.vue';
-import NumberPad from '@/components/Money/NumberPad.vue';
 
 Vue.config.productionTip = false
 
 // 引入全局 Nav
 Vue.component('Nav',Nav)
 Vue.component('Layout',Layout)
-
+Vue.component('Icon',Icon)
 new Vue({
   router,
   store,
