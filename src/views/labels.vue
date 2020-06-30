@@ -2,12 +2,13 @@
   <Layout>
     <div>
       <ol class="tags">
-        <li v-for="tag in tags" :key="tag">
+        <li v-for="tag in tags" :key="tag" >
           <span>{{tag}}</span>
         </li>
       </ol>
       <div class="newTag-wrapper">
         <button class="newTag" @click="createTag">新增标签</button>
+        <button class="newTag" @click="removeTag">删除标签</button>
       </div>
     </div>
   </Layout>
@@ -22,19 +23,22 @@ import tagListModel from "@/models/tagsModel"
 @Component
   export default class Labels extends Vue{
     tags = tagListModel.data
-
+    selected
     createTag(){
       const name = window.prompt('请输入标签名')
-      if(name===''){
-        window.alert('标签名不为空')
-      }
       const message = tagListModel.create(name)
       if(message === 'duplicate'){
         window.alert('重复')
       }else if(message === 'success'){
        return
+      }else if(message === 'null'){
+        return
       }
     }
+
+  removeTag(){
+     tagListModel.remove(name)
+  }
 }
 </script>
 

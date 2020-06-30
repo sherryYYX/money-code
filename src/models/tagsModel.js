@@ -9,12 +9,22 @@ const  tagListModel = {
   },
 
   create(name){
-    if(this.data.indexOf(name)>=0){
+    if(name===''){
+      window.alert('标签名不为空')
+      return null
+    }else if(this.data.indexOf(name)>=0){
       return 'duplicate'
+    }else {
+      this.data.push(name)
+      this.save()
+      return "success"
     }
-    this.data.push(name)
-    this.save()
-    return "success"
+
+  },
+
+  remove(name){
+    const index = this.data.indexOf(name);
+    this.data.splice(index, 1)
   },
 
   save() {
