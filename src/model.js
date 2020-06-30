@@ -1,7 +1,7 @@
 // const model={
 //   //从localStorage 里拿数据
 //   fetch(){
-//     JSON.parse(window.localStorage.getItem('recordList')|| '[]');
+//     return  JSON.parse(window.localStorage.getItem('recordList')||'[]');
 //   },
 //
 //   //从localStorage 里拿数据
