@@ -1,6 +1,7 @@
 <template>
   <Layout>
-    <Tags :data-source.sync="tags" @update:value="updateTags"></Tags>
+    {{recordList}}
+    <Tags  @update:value="updateTags"></Tags>
     <Notes @update:value="updateNotes"></Notes>
     <Types @update:value="updateTypes"></Types>
     <NumberPad @update:value="updateNumberPad" @submit="saveRecord"></NumberPad>
@@ -28,7 +29,7 @@
   export default class Money extends Vue{
     tags =  tagList //给 Tags 组件传的标签
     record = {
-      tags:[], notes:'',type:'', totalNumber:0, date:Date
+      tags:[], notes:'',type:'-', totalNumber:0, date:''
     }
     recordList = recordList
     updateTags(e){
@@ -47,7 +48,7 @@
 
     saveRecord(){
       const newRecord = JSON.parse(JSON.stringify(this.record))
-      newRecord.date = new Date()
+      newRecord.date = new Date().toISOString() //添加的日期转成ISO8601；
       this.recordList.push(newRecord)
       console.log(this.recordList)
     }
@@ -56,10 +57,6 @@
       recordModel.save(this.recordList)
     }
 
-    // @Watch('tags')
-    // tagsChanged(){
-    //   tagsModel.save(this.tags)
-    // }
   }
 </script>
 

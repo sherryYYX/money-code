@@ -1,7 +1,7 @@
 const recordModel ={
   //
   fetch(){
-    return JSON.parse(window.localStorage.getItem('recordList') )
+    return JSON.parse(window.localStorage.getItem('recordList')||'[]' )
   },
   //
   save(data){

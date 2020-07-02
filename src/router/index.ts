@@ -4,7 +4,9 @@ import Money from '../views/money.vue'
 import Labels from '../views/labels.vue'
 import Statistic from '../views/statistic.vue'
 import NotFound from '@/views/NotFound.vue';
-import EditLabel from '@/views/EditLabel.vue';
+import Details from '@/components/Statistics/Details.vue';
+import Chart from '@/components/Statistics/Chart.vue';
+
 Vue.use(VueRouter)
 
   const routes: Array<RouteConfig> = [
@@ -23,7 +25,16 @@ Vue.use(VueRouter)
     },
     {
       path: '/statistic',
-      component: Statistic
+      component: Statistic,
+      redirect: '/statistic/details'
+    },
+    {
+      path: '/statistic/details',
+      component: Details
+    },
+    {
+      path: '/statistic/chart',
+      component: Chart
     },
     {
       path: '*',

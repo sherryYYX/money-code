@@ -1,6 +1,7 @@
 const localStorageKeyName = 'tagList';
 
 const  tagListModel = {
+
   data:[],
   fetch() {
     this.data=JSON.parse(window.localStorage.getItem(localStorageKeyName) || '[]');
@@ -9,7 +10,7 @@ const  tagListModel = {
   },
 
   create(name){
-    if(name===''){
+    if(name===''|| name === null){
       window.alert('标签名不为空')
       return null
     }else if(this.data.indexOf(name)>=0){
@@ -22,9 +23,10 @@ const  tagListModel = {
 
   },
 
-  remove(name){
-    const index = this.data.indexOf(name);
+  remove(tag){
+    const index = this.data.indexOf(tag);
     this.data.splice(index, 1)
+    this.save()
   },
 
   save() {
