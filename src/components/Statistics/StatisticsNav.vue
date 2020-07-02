@@ -1,6 +1,6 @@
 <template>
   <div class="nav">
-    <router-link to="/statistic/details"  class="nav-item" active-class="selected" exact>
+    <router-link to="/statistic/details"  class="nav-item" active-class="selected" >
       记账明细
     </router-link>
     <router-link to="/statistic/chart" class="nav-item" active-class="selected">

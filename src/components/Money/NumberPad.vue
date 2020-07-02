@@ -68,8 +68,9 @@
     }
 
     ok(){
-      this.$emit('update:value',this.output) //将本组件的金额收到money页面
-      this.$emit('submit', this.output)  //提交用户存储一次的数据record
+      const number = parseFloat(this.output)
+      this.$emit('update:value',number) //将本组件的金额收到money页面
+      this.$emit('submit', number)  //提交用户存储一次的数据record
       this.output = '0'
     }
   }
