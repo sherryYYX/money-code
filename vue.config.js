@@ -1,6 +1,9 @@
 const path = require("path");
 
 module.exports = {
+  publicPath: process.env.NODE_ENV === 'production'
+    ? '/-keep-accounts-website/'
+    : '/',
   chainWebpack: config => {
     const dir = path.resolve(__dirname, "src/assets/icons"); // 存放icons的目录
 
