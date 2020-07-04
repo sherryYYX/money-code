@@ -36,7 +36,7 @@
     font-size: 24px;
     > li {
       width: 50%;
-      height: 40px;
+      height: 56px;
       display: flex;
       justify-content: center;
       align-items: center;

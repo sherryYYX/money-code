@@ -55,7 +55,7 @@
     flex-grow: 1;
     display: flex;
     flex-direction: column;
-    min-height: 112px;
+    min-height: 150px;
     position: relative;
     > .current {
       display: flex;
