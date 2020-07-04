@@ -1,66 +1,71 @@
 <template>
-      <statistic>
-           <div>
-             <div class="title">我的记账本</div>
-             <div class="parcel">
-               <div>本月支出</div>
-               <span class="expenses">￥{{result('-','month')}}</span>
+  <Layout>
+    <div class="nativeBody">
+      <div class="title">我的记账</div>
 
-               <div class="budget">
-                 <span>本月收入<a>￥{{result('+','month')}}</a></span>
-               </div>
-
-             </div>
-             <div class="today">
-               <span>今日支出<a>￥{{result('-','day')}}</a></span>
-               <span>今日收入<a>￥{{result('+','day')}}</a></span>
-             </div>
-             <div class="records">
-               <ol>
-                 <li v-for="item in recordList" :key="item.date">
-                   <span>{{tagString(item.tags)}} ${{item.totalNumber}}</span>
-                 </li>
-               </ol>
-<!--               <router-link class="record" v-for="item in recordList" :key="item.date" :to="`general/edit/${item.id}`">-->
-<!--                 <span class="icon-span">{{item.tag}}<span>{{item.notes}}</span></span>-->
-<!--                 <span class="amount"><span >￥{{item.type}}{{item.totalNumber}}</span>{{beautify(item.date)}}</span>-->
-<!--               </router-link>-->
-             </div>
+      <div class="container">
+        <div class="month">
+          <div>本月支出</div>
+          <span class="monthExpense">￥{{result('-','month')}}</span>
+          <div class="budget">
+            <span>本月收入<span class="monthIncome">￥{{result('+','month')}}</span> </span>
+          </div>
+        </div>
+      </div>
 
 
+      <div class="today">
+            <span>
+              今日支出
+              <span class="todayColor">
+                ￥{{result('-','day')}}
+              </span>
+            </span>
+        <span>
+              今日收入
+              <span class="todayColorGreen">
+                ￥{{result('+','day')}}
+              </span>
+            </span>
+      </div>
 
+      <div >
+        <ol class="records">
+          <li v-for="item in recordList" :key="item.date">
+            <div class="tags">
+              {{tagString(item.tags)}}
+              <div>{{item.notes}}</div>
+            </div>
 
-<!--             <ol>-->
-<!--               <li v-for="(group,index) in groupList" :key="index">-->
-<!--                 {{group.title}}-->
-<!--                 今日支出：{{group.expendTotal}}： 今日收入：${{group.incomeTotal}}-->
-<!--                 <ol>-->
-<!--                   <li v-for="(item,index) in group.items" :key="index">-->
-<!--                     <span>{{tagString(item.tags)}}</span>-->
-<!--                     <span>{{item.notes}}</span>-->
-<!--                     <span>¥{{item.type+item.totalNumber}}</span>-->
-<!--                   </li>-->
-<!--                 </ol>-->
-<!--               </li>-->
-<!--             </ol>-->
-           </div>
-        <button>点击结果</button>
-      </statistic>
+            <span class="total">
+                   <div>
+                  ¥{{item.type}}{{item.totalNumber}}
+                   </div>
+                  {{beautify(item.date)}}
+                </span>
+          </li>
+        </ol>
+      </div>
+
+    </div>
+  </Layout>
 </template>
 
 <script lang="js">
   import Vue from 'vue';
-  import {Component} from 'vue-property-decorator';
+  import {Component,} from 'vue-property-decorator';
   import Statistic from '@/views/statistic.vue';
   import recordModel from "@/models/recordModel"
   import dayjs from 'dayjs'
 
-  const recordList = recordModel.fetch()
+
   @Component({
        components: {Statistic}
   })
+
   export default class Details extends Vue {
-    recordList = recordList
+
+    recordList =  recordModel.fetch()
 
     //将tags：['衣服'] => 衣服
      tagString(tags){
@@ -74,6 +79,7 @@
       const now = dayjs();
       const {recordList} = this;
       const newList=JSON.parse(JSON.stringify(recordList)).filter(r=>r.type===type);
+
       for(let i=0;i<newList.length;i++){
         if(now.isSame(dayjs(newList[i].date),'day')){
           daily+=newList[i].totalNumber;
@@ -100,17 +106,6 @@
         return day.format('YYYY年M月D日  HH:mm');
       }
     }
-
-
-
-
-
-
-
-
-
-
-
 
    //  //将tags：['衣服'] => 衣服
    //  tagString(tags){
@@ -163,14 +158,104 @@
    //      },0)
    //
    //    })
-   //    console.log(groupList)
-   //    return groupList
+   //   return groupList
+   //
    //  }
+
+
+
+
 
 
   }
 </script>
 
 <style lang="scss" scoped>
+  .title{
+    padding-left: 16px;
+    padding-top: 8px;
+    background: #ddd;
+    font-weight: bold;
+  }
+  .container{
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    .month{
+      color: #666;
+      font-size: 16px;
+      width: 100vw;
+      margin: 8px 12px;
+      padding: 16px;
+      background: #fafafa;
+      border-radius: 4px;
+      box-shadow:  -6px -6px 10px rgba(255, 255, 255, 0.5),
+                   6px 6px 20px rgba(0,0,0,0.1);
+      .monthExpense{
+        font-size: 28px;
+        color: red;
+      }
+      .monthIncome{
+        color: #42b983;
+      }
+    }
+  }
 
+  .records{
+    > li{
+      color: #666;
+      font-size: 16px;
+      margin: 8px 12px;
+      padding: 16px;
+      background: #fafafa;
+      border-radius: 4px;
+      box-shadow:  -6px -6px 10px rgba(255, 255, 255, 0.5),
+      6px 6px 20px rgba(0,0,0,0.1);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: relative;
+      .tags{
+        display: flex;
+        align-items: center;
+        font-size: 20px;
+        font-weight: bold;
+        >div{
+          word-wrap:break-word;
+          position: absolute;
+          left: 50%;
+          transform: translateX(-50%);
+          font-weight: normal;
+          font-size: 16px;
+          flex-wrap: wrap;
+        }
+      }
+      .total{
+        color: #c5c5c5;
+        font-size: 12px;
+        >div{
+          font-size: 20px;
+          font-weight: bold;
+          color: black;
+        }
+      }
+
+    }
+  }
+  .today{
+    padding: 12px;
+    margin: 10px 12px;
+    font-size: 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .todayColor{
+      color: red;
+      font-size: 18px;
+    }
+    .todayColorGreen{
+      color: #42b983;
+      font-size: 18px;
+    }
+  }
 </style>

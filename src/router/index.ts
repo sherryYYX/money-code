@@ -26,7 +26,7 @@ Vue.use(VueRouter)
     {
       path: '/statistic',
       component: Statistic,
-      redirect: '/statistic/details'
+      redirect: '/statistic/details',
     },
     {
       path: '/statistic/details',
@@ -42,7 +42,12 @@ Vue.use(VueRouter)
     },
 ]
 
+
+
+
 const router = new VueRouter({
+
+  mode: 'history',
   routes
 })
 

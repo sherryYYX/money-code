@@ -1,19 +1,17 @@
 <template>
   <Layout>
-    <div>
       <statistics-nav></statistics-nav>
       <div class="content">
         <slot/>
       </div>
-    </div>
   </Layout>
 </template>
 
 <script lang="js">
   import Vue from 'vue';
   import {Component} from 'vue-property-decorator';
-  import StatisticsNav from '@/components/Statistics/StatisticsNav.vue';
   import recordModel from '@/models/recordModel';
+  import StatisticsNav from "@/components/Statistics/StatisticsNav"
 
   const recordList = recordModel.fetch()
 

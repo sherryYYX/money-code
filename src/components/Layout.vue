@@ -26,8 +26,11 @@
 
   > .content{
     border: 1px solid green;
-    background: #eeeeee;
+    background: #f2f2f2;
+    overflow: auto;
     flex-grow: 1;
+
+
   }
 }
 </style>

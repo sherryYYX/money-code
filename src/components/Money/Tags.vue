@@ -49,13 +49,13 @@
 <style lang="scss" scoped>
   @import "src/assets/style/helper";
   .tags {
-    overflow-y: scroll;
+   overflow: auto;
     font-size: 14px;
     padding: 16px;
     flex-grow: 1;
     display: flex;
     flex-direction: column;
-    min-height: 128px;
+    min-height: 112px;
     position: relative;
     > .current {
       display: flex;

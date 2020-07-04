@@ -2,10 +2,17 @@ const localStorageKeyName = 'tagList';
 
 const  tagListModel = {
 
-  data:[],
+  data:['衣服','食物','住房','交通'],
   fetch() {
     this.data=JSON.parse(window.localStorage.getItem(localStorageKeyName) || '[]');
+    if(!this.data || this.data.length === 0){
+      this.create('衣服')
+      this.create('食物')
+      this.create('住房')
+      this.create('交通')
+    }
     return this.data
+
 
   },
 

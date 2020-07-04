@@ -1,6 +1,5 @@
 <template>
   <Layout>
-    {{recordList}}
     <Tags  @update:value="updateTags"></Tags>
     <Notes @update:value="updateNotes"></Notes>
     <Types @update:value="updateTypes"></Types>
@@ -15,19 +14,17 @@
   import NumberPad from '@/components/Money/NumberPad.vue';
   import Component from "vue-class-component"
   import Vue from 'vue'
-  import {Watch} from "vue-property-decorator"
   import recordModel from "@/models/recordModel"
   import tagListModel from "@/models/tagsModel"
 
   const recordList = recordModel.fetch()
-  const tagList = tagListModel.fetch()
 
   @Component({
     components: {NumberPad, Types, Notes, Tags}
   })
 
   export default class Money extends Vue{
-    tags =  tagList //给 Tags 组件传的标签
+    tags =  tagListModel.fetch() //给 Tags 组件传的标签
     record = {
       tags:[], notes:'',type:'-', totalNumber:0, date:''
     }
@@ -47,15 +44,12 @@
 
 
     saveRecord(){
-      const newRecord = JSON.parse(JSON.stringify(this.record))
-      newRecord.date = new Date().toISOString() //添加的日期转成ISO8601；
-      this.recordList.push(newRecord)
-      console.log(this.recordList)
+      recordModel.create(this.record)
     }
-    @Watch('recordList')
-    recordListChanged(){
-      recordModel.save(this.recordList)
-    }
+    // @Watch('recordList')
+    // recordListChanged(){
+    //   recordModel.save()
+    // }
 
   }
 </script>

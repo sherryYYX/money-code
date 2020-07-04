@@ -1,6 +1,6 @@
 <template>
   <div class="nav">
-    <router-link to="/statistic/details"  class="nav-item" active-class="selected" >
+    <router-link to="/statistic/details"  class="nav-item" active-class="selected">
       记账明细
     </router-link>
     <router-link to="/statistic/chart" class="nav-item" active-class="selected">
@@ -9,7 +9,7 @@
   </div>
 </template>
 
-<script lang="ts">
+<script lang="js">
   import Vue from 'vue';
   import {Component} from 'vue-property-decorator';
 
